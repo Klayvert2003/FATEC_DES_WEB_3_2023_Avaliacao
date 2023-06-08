@@ -1,0 +1,102 @@
+{% load static %}
+<style>
+    body, html {
+        height: 100%;
+    }
+
+    .background {
+        position: relative;
+        height: 100%;
+        background-color: #f2f2f2;
+    }
+
+    .form-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 2px solid black;
+        border-radius: 10px;
+    }
+    
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+        width: 360px;
+        border: 2px solid #333333;
+        border-radius: 5px;
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+    
+
+    .messages {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+</style>
+<title>Registro de Presença</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<nav>
+    <ul>
+      <li><a href="{% url 'registra_presenca' %}" class="btn">Registro de Presença</a></li>
+      <li><a href="{% url 'lista_alunos' %}" class="btn">Lista dos Alunos</a></li>
+    </ul>
+</nav>
+<div class="background">
+  <div class="form-container">
+    <center>
+    <h2>Registro de Presença</h2>
+    </center>
+    <form method="post" action="{% url 'registra_presenca' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.nome_aluno.id_for_label }}">Nome do Aluno:</label>
+            {{ form.nome_aluno }}
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="{{ form.nome_professor.id_for_label }}">Nome do Professor:</label>
+            {{ form.nome_professor }}
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="{{ form.curso.id_for_label }}">Curso do Aluno:</label>
+            {{ form.curso }}
+        </div>
+        <br>
+        <button type="submit">Registrar Presença</button>
+    </form>
+  </div>
+</div>
